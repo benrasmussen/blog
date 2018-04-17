@@ -14,9 +14,15 @@ public class HomeController {
         return "This is the landing page";
     }
 
+    @GetMapping("/home")
+    public String welcome() {
+        return "home";
+    }
+
     @GetMapping("/home/{name}")
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("name", name);
-        return "hello";
+        return "home";
     }
+
 }
