@@ -1,6 +1,7 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
+import com.example.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,33 +12,21 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    @GetMapping("/posts/index")
-    public String index(Model mod) {
-        List<Post> posts = Post.all();
-        mod.addAttribute("posts", posts);
-        return "posts/index";
-    }
-
-    @GetMapping("/posts/show")
-    public String individualPost(Model mod) {
-        Post post = Post.myPost();
-        String title = post.getTitle();
-        String body = post.getBody();
-        mod.addAttribute("title", title);
-        mod.addAttribute("body", body);
-        return "posts/show";
+    PostService postSvc;
+    public PostController(PostService postSvc) {
+        this.postSvc = postSvc;
     }
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String index() {
-        return "posts index page";
+    public String index(Model mod) {
+        mod.addAttribute("posts", postSvc.getAllPosts());
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String show(@PathVariable int id) {
-        return "posts index page " + id;
+    public String show(@PathVariable long id, Model mod) {
+        mod.addAttribute("post", postSvc.getPost(id));
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
