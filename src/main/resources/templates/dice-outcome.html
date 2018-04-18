@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: header('Roll dice result')"></head>
+<body>
+
+<div th:include="partials/navbar :: navbar"></div>
+
+<h1>Dice Outcome</h1>
+<h3>You guessed: <span th:text="${guess}"></span></h3>
+<h3>The correct guess is: <span th:text="${number}"></span></h3>
+<h3 th:if="${result}">You guessed correctly!</h3>
+<h3 th:if="${!result}">You guessed WRONG :(</h3>
+
+<div th:include="partials/footer :: footer"></div>
+
+</body>
+</html>
