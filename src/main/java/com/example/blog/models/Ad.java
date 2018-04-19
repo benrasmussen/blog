@@ -6,12 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table (name = "ads")
+public class Ad {
+
     @Id
     @GeneratedValue
     private long id;
@@ -20,14 +19,20 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
-    private String body;
+    private String description;
 
-    public Post() {
+    public Ad() {
     }
 
-    public Post(String title, String body) {
+    public Ad(String title, String description, long id) {
         this.title = title;
-        this.body = body;
+        this.description = description;
+        this.id = id;
+    }
+
+    public Ad(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -38,12 +43,12 @@ public class Post {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {
@@ -53,7 +58,4 @@ public class Post {
     public void setId(long id) {
         this.id = id;
     }
-
 }
-
-

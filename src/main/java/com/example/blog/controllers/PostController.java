@@ -1,5 +1,6 @@
 package com.example.blog.controllers;
 
+import com.example.blog.models.Ad;
 import com.example.blog.models.Post;
 import com.example.blog.services.PostService;
 import org.springframework.stereotype.Controller;
@@ -30,15 +31,29 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String insert() {
-        return "INSERT - view the form for creating a post";
+    public String showCreatePostForm(Model mod) {
+        mod.addAttribute("newPost", new Post("", ""));
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String createNewPost() {
-        return "create a new post";
+    public String createNewPost(@ModelAttribute Post newPost) {
+        postSvc.save(newPost);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String edit(@PathVariable long id, Model mod){
+        mod.addAttribute("post", postSvc.getPost(id));
+        return "/posts/edit";
+    }
+
+    @PostMapping("/posts/edit")
+    public String handleEdit(@ModelAttribute Post post){
+        System.out.println("posts = " + post.getId());
+        System.out.println("posts = " + post.getBody());
+        System.out.println("posts = " + post.getTitle());
+        return "redirect:/posts";
     }
 
 }
