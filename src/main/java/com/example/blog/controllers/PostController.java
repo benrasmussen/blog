@@ -1,7 +1,7 @@
 package com.example.blog.controllers;
 
-import com.example.blog.models.Ad;
 import com.example.blog.models.Post;
+import com.example.blog.repository.PostRepository;
 import com.example.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +13,17 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    PostService postSvc;
-    public PostController(PostService postSvc) {
+    private final PostService postSvc;
+    private final PostRepository postDao;
+
+    public PostController(PostService postSvc, PostRepository postDao) {
         this.postSvc = postSvc;
+        this.postDao = postDao;
     }
 
     @GetMapping("/posts")
     public String index(Model mod) {
-        mod.addAttribute("posts", postSvc.getAllPosts());
+        mod.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 

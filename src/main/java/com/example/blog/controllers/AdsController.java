@@ -26,7 +26,7 @@ public class AdsController {
 
     @GetMapping("/ads/{id}")
     public String show(@PathVariable long id, Model model) {
-        model.addAttribute("ad", adSvc.getAd(id));
+        model.addAttribute("ad", adDao.findById(id));
         return "/ads/show";
     }
 
@@ -38,21 +38,20 @@ public class AdsController {
 
     @PostMapping("/ads/create")
     public String insert(@ModelAttribute Ad newAd) {
-        adSvc.save(newAd);
+        adDao.save(newAd);
         return "redirect:/ads";
     }
 
-    @GetMapping("/ads/{id}/edit")
+    @GetMapping("/ads/edit/{id}")
     public String edit(@PathVariable long id, Model mod){
-        mod.addAttribute("ad", adSvc.getAd(id));
+        mod.addAttribute("ad", adDao.findById(id));
         return "/ads/edit";
     }
 
-    @PostMapping("/ads/edit")
-    public String handleEdit(@ModelAttribute Ad ad){
-        System.out.println("ad = " + ad.getId());
-        System.out.println("ad = " + ad.getDescription());
-        System.out.println("ad = " + ad.getTitle());
+    @PostMapping("/ads/edit/{id}")
+    public String handleEdit(@PathVariable long id, Ad ad){
+        ad.setId(id);
+        adDao.save(ad);
         return "redirect:/ads";
     }
 
