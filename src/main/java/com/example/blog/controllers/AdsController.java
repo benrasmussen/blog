@@ -1,6 +1,7 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Ad;
+import com.example.blog.repository.AdRepository;
 import com.example.blog.services.AdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,15 +10,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class AdsController {
 
-    AdService adSvc;
+    private final AdService adSvc;
+    private final AdRepository adDao;
 
-    public AdsController(AdService adSvc) {
+    public AdsController(AdService adSvc, AdRepository adDao) {
         this.adSvc = adSvc;
+        this.adDao = adDao;
     }
 
     @GetMapping("/ads")
     public String index(Model model) {
-        model.addAttribute("ads", adSvc.getAllAds());
+        model.addAttribute("ads", adDao.findAll());
         return "/ads/index";
     }
 

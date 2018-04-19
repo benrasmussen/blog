@@ -1,17 +1,15 @@
 package com.example.blog.models;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Id;
 
 @Entity
 @Table(name = "posts")
 public class Post {
+
     @Id
     @GeneratedValue
     private long id;

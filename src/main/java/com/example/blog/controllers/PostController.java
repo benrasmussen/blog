@@ -32,7 +32,7 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String showCreatePostForm(Model mod) {
-        mod.addAttribute("newPost", new Post("", ""));
+        mod.addAttribute("newPost", new Post());
         return "/posts/create";
     }
 
@@ -50,9 +50,9 @@ public class PostController {
 
     @PostMapping("/posts/edit")
     public String handleEdit(@ModelAttribute Post post){
-        System.out.println("posts = " + post.getId());
-        System.out.println("posts = " + post.getBody());
-        System.out.println("posts = " + post.getTitle());
+        System.out.println("post = " + post.getId());
+        System.out.println("post = " + post.getTitle());
+        System.out.println("post = " + post.getBody());
         return "redirect:/posts";
     }
 
