@@ -12,20 +12,22 @@ public class Post {
 
     @Id
     @GeneratedValue
+    @Column(columnDefinition = "INT(11) UNSIGNED")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT", length = 50)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
     public Post() {
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, long id) {
         this.title = title;
         this.body = body;
+        this.id = id;
     }
 
     public String getTitle() {

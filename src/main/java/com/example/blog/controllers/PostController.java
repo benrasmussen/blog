@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class PostController {
 
@@ -29,7 +27,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model mod) {
-        mod.addAttribute("post", postSvc.getPost(id));
+        mod.addAttribute("post", postDao.findById(id));
         return "/posts/show";
     }
 
@@ -41,22 +39,27 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createNewPost(@ModelAttribute Post newPost) {
-        postSvc.save(newPost);
+        postDao.save(newPost);
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/{id}/edit")
+    @GetMapping("/posts/edit/{id}")
     public String edit(@PathVariable long id, Model mod){
-        mod.addAttribute("post", postSvc.getPost(id));
+        mod.addAttribute("post", postDao.findById(id));
         return "/posts/edit";
     }
 
     @PostMapping("/posts/edit")
     public String handleEdit(@ModelAttribute Post post){
-        System.out.println("post = " + post.getId());
-        System.out.println("post = " + post.getTitle());
-        System.out.println("post = " + post.getBody());
+        postDao.save(post);
         return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/delete")
+    public String deletePost(@ModelAttribute Post post) {
+        postDao.delete(post);
+        return "redirect:/posts";
+
     }
 
 }
