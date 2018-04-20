@@ -10,8 +10,20 @@
     <h1>Ads</h1>
 
     <div th:each="ad : ${ads}">
+
+        <div th:each="image : ${ad.images}">
+            <img width="50%" th:src="${image.path}" />
+        </div>
+
         <h3><span th:text="${ad.title}"></span></h3>
         <p><span th:text="${ad.description}"></span></p>
+
+        <p><span th:text="${'$ ' + ad.adDetails.price + '0'}"></span></p>
+        <p><span th:text="${ad.adDetails.location}"></span></p>
+
+        <!-- This is how you use the one to one -->
+        <p th:text="${ad.user.email}"></p>
+
     </div>
 
 </main>
