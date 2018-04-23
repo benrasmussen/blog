@@ -1,7 +1,6 @@
 package com.example.blog.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,18 +19,14 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Ad> ads;
-
-    // This is useful to insert users
-    public User(String username, String email, String password, List<Ad> ads) {
+    // This is to insert users
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.ads = ads;
     }
 
-    // This is useful to get a full user obj
+    // This is to get a full user obj
     public User(long id, String username, String email, String password) {
         this.username = username;
         this.email = email;

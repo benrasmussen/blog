@@ -5,3 +5,41 @@
     margin: 0;
     padding: 0;
 }
+
+.create-button {
+    position: relative;
+    left: 140px;
+    top: -20px;
+}
+
+.see-all-button {
+    position: relative;
+    left: 20px;
+    top: 24px;
+}
+
+.posts {
+    border: solid lightseagreen 2px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 30px;
+}
+
+.user-email {
+    color: seagreen;
+}
+
+.username {
+    color: seagreen;
+}
+
+.footer {
+    text-align: center;
+}
+
+.brb {
+    position: absolute;
+    top: 8px;
+    left: 300px;
+    font-family: Pacifico, sans-serif;
+}

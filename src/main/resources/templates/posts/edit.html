@@ -8,19 +8,21 @@
 <main class="container">
 
     <form th:action="@{/posts/edit}" th:method="post" th:object="${post}">
-        Title:
-        <input th:field="*{title}" th:value="${title}" />
+        <h4>Title:</h4>
+        <input class="form-control" th:field="*{title}" th:value="${title}" />
         <br />
-        Description:
-        <input th:field="*{body}" th:value="${body}" />
+        <h4>Description:</h4>
+        <textarea class="form-control" rows="10" th:field="*{body}" th:value="${body}"></textarea>
         <br />
-        <input type="hidden" th:field="*{id}" th:value="${id}" />
-        <input type="submit" />
+        <h4>Submit Edit to Blog:</h4>
+        <input class="form-control" type="hidden" th:field="*{id}" th:value="${id}" />
+        <button class="btn btn-primary" type="submit">Submit Edit</button>
     </form>
 
     <form th:action="@{/posts/delete}" th:method="post" th:object="${post}">
-        <input type="hidden" th:field="*{id}"  />
-        <button id="delete">Delete</button>
+        <h4>Delete this post from blog:</h4>
+        <input class="form-control" type="hidden" th:field="*{id}"  />
+        <button class="btn btn-primary" id="delete">Delete</button>
     </form>
 
 </main>

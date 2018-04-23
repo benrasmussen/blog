@@ -12,7 +12,7 @@
     <div th:each="ad : ${ads}">
 
         <div th:each="image : ${ad.images}">
-            <img width="50%" th:src="${image.path}" />
+            <img width="25%" th:src="${image.path}" />
         </div>
 
         <h3><span th:text="${ad.title}"></span></h3>

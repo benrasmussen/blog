@@ -3,7 +3,7 @@
 <head th:replace="partials/header :: header('Blog Post')">
 </head>
 <body>
-<div th:include="partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 
 <div class="container">
     <div class="card bg-dark col-12 col-sm-10 col-lg-6 text-white my-5">
@@ -13,6 +13,12 @@
             </div>
             <div class="card-text col-12">
                 <p th:text="${post.body}"></p>
+            </div>
+            <div class="card-title col-12">
+                <p>User Email: <span th:text="${post.user.email}"></span></p>
+            </div>
+            <div class="card-title col-12">
+                <p>Username: <span th:text="${post.user.username}"></span></p>
             </div>
         </div>
     </div>

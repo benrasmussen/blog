@@ -2,6 +2,7 @@ package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
 import com.example.blog.repository.PostRepository;
+import com.example.blog.repository.UserRepository;
 import com.example.blog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,13 @@ public class PostController {
 
     private final PostService postSvc;
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostService postSvc, PostRepository postDao) {
+    public PostController(PostService postSvc, PostRepository postDao, UserRepository userDao) {
         this.postSvc = postSvc;
         this.postDao = postDao;
+        this.userDao = userDao;
+
     }
 
     @GetMapping("/posts")
@@ -39,6 +43,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createNewPost(@ModelAttribute Post newPost) {
+        newPost.setUser(userDao.findById(1));
         postDao.save(newPost);
         return "redirect:/posts";
     }
@@ -51,6 +56,7 @@ public class PostController {
 
     @PostMapping("/posts/edit")
     public String handleEdit(@ModelAttribute Post post){
+        post.setUser(userDao.findById(1));
         postDao.save(post);
         return "redirect:/posts";
     }

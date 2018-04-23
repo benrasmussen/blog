@@ -3,18 +3,19 @@
 <head th:replace="partials/header :: header('Create a new Post')"></head>
 <body>
 
-<div th:include="partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 
 <main class="container">
 
     <form th:action="@{/posts/create}" th:method="post" th:object="${newPost}">
-        Title:
-        <input th:field="*{title}" />
+        <h4>Title:</h4>
+        <input class="form-control" th:field="*{title}" />
         <br />
-        Description:
-        <input th:field="*{body}" />
+        <h4>Write your post here:</h4>
+        <textarea class="form-control" rows="10" th:field="*{body}"></textarea>
         <br />
-        <input type="submit" />
+        <h4>Submit Post to Blog</h4>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 
 </main>

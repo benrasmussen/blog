@@ -1,10 +1,6 @@
 package com.example.blog.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "posts")
@@ -21,13 +17,24 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    //this creates the relationship to the users table
+    @OneToOne
+    private User user;
+
     public Post() {
     }
 
-    public Post(String title, String body, long id) {
+    public Post(String title, String body, User user) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+    }
+
+    public Post(String title, String body, long id, User user) {
         this.title = title;
         this.body = body;
         this.id = id;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -54,6 +61,13 @@ public class Post {
         this.id = id;
     }
 
-}
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+}
 
