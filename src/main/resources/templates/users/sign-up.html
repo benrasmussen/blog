@@ -8,8 +8,13 @@
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
 
-
-<form th:action="@{/signup}" class="container" method="POST" th:object="${user}">
+<form th:action="@{/sign-up}" class="container" method="POST" th:object="${user}">
+    <div th:if="${param.error}">
+        <h3><code>Invalid Username and Password.</code></h3>
+    </div>
+    <div th:if="${param.logout}">
+        <h3><code>You have been logged out.</code></h3>
+    </div>
     <h1>Create an account</h1>
     <br />
     <h4>Username</h4>

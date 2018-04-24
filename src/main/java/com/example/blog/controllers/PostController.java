@@ -1,13 +1,14 @@
 package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
+import com.example.blog.models.User;
 import com.example.blog.repository.PostRepository;
 import com.example.blog.repository.UserRepository;
 import com.example.blog.services.PostService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PostController {
@@ -37,7 +38,7 @@ public class PostController {
     @GetMapping("/posts")
     public String index(Model mod) {
         mod.addAttribute("posts", postDao.findAll());
-        return "posts/index";
+        return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
@@ -54,7 +55,8 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createNewPost(@ModelAttribute Post newPost) {
-        newPost.setUser(userDao.findById(1));
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newPost.setUser(user);
         postDao.save(newPost);
         return "redirect:/posts";
     }
