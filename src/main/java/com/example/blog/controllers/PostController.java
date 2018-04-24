@@ -22,6 +22,17 @@ public class PostController {
         this.userDao = userDao;
 
     }
+    @GetMapping("/")
+    public String homePage(Model mod) {
+        mod.addAttribute("posts", postDao.findAll());
+        return "posts/index";
+    }
+
+    @GetMapping("/hello")
+    @ResponseBody
+    public String sayHello() {
+        return "Hi, Janie :)";
+    }
 
     @GetMapping("/posts")
     public String index(Model mod) {
