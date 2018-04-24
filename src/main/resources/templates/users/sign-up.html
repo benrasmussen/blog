@@ -8,18 +8,23 @@
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
 
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
-
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
-
-    <input value="Sign me up!" type="submit" />
+<form th:action="@{/signup}" class="container" method="POST" th:object="${user}">
+    <h1>Create an account</h1>
+    <br />
+    <h4>Username</h4>
+    <label for="username"></label>
+    <input class="form-control" id="username" th:field="*{username}" />
+    <br />
+    <h4>Email</h4>
+    <label for="email"></label>
+    <input class="form-control" id="email" th:field="*{email}" />
+    <br />
+    <h4>Password</h4>
+    <label for="password"></label>
+    <input class="form-control" id="password" type="password" th:field="*{password}" />
+    <br />
+    <button class="btn btn-primary" value="Sign me up!" type="submit">Submit</button>
 </form>
 
 <footer th:replace="partials/footer :: footer"></footer>

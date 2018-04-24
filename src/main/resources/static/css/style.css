@@ -10,12 +10,14 @@
     position: relative;
     left: 140px;
     top: -20px;
+    color: pink;
 }
 
 .see-all-button {
     position: relative;
     left: 20px;
     top: 24px;
+    color: pink;
 }
 
 .posts {
@@ -42,4 +44,28 @@
     top: 8px;
     left: 300px;
     font-family: Pacifico, sans-serif;
+}
+
+.login-button {
+    position: absolute;
+    top: 35px;
+    left: 770px;
+    background-color: pink;
+    color: #73B566;
+}
+
+.logout-button {
+    position: absolute;
+    top: 27px;
+    left: 850px;
+    background-color: pink;
+    color: #73B566;
+}
+
+.sign-up-button {
+    position: absolute;
+    top: 35px;
+    left: 670px;
+    background-color: pink;
+    color: #73B566;
 }
