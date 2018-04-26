@@ -50,7 +50,7 @@
     display: inline;
     position: absolute;
     top: 35px;
-    left: 770px;
+    right: 25px;
     background-color: pink;
     color: #73B566;
 }
@@ -59,7 +59,7 @@
     display: inline;
     position: absolute;
     top: 35px;
-    left: 850px;
+    right: 15px;
     background-color: pink;
     color: #73B566;
 }
@@ -68,7 +68,12 @@
     display: inline;
     position: absolute;
     top: 35px;
-    left: 670px;
+    right: 110px;
     background-color: pink;
     color: #73B566;
+}
+
+.error {
+    position: relative;
+    top: 10px;
 }
