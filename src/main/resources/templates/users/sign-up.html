@@ -11,21 +11,25 @@
 <form th:action="@{/sign-up}" class="container" method="POST" th:object="${user}">
     <h1>Create an account</h1>
     <br />
+
     <h4>Username</h4>
     <label for="username"></label>
     <input class="form-control" id="username" th:field="*{username}" />
     <p><code class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></code></p>
     <br />
+
     <h4>Email</h4>
     <label for="email"></label>
     <input class="form-control" id="email" th:field="*{email}" />
     <p><code class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></code></p>
     <br />
+
     <h4>Password</h4>
     <label for="password"></label>
     <input class="form-control" id="password" type="password" th:field="*{password}" />
     <p><code class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></code></p>
     <br />
+
     <button class="btn btn-primary" value="Sign me up!" type="submit">Submit</button>
 </form>
 

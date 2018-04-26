@@ -16,7 +16,7 @@ public class User {
 
     @Column(nullable = false, unique = true)
     @NotBlank
-    @Size(min=5, max=25, message = "Username must be between 5 and 25 characters")
+    @Size(min=3, max=20, message = "Username must be between 3 and 20 characters")
     private String username;
 
     @Column(nullable = false, unique = true)
@@ -26,7 +26,6 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank
-    @Size(min=5, max=25, message = "Password must be between 5 and 25 characters")
     private String password;
 
     // This is to insert users

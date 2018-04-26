@@ -30,7 +30,8 @@ public class UserController {
     @PostMapping("/sign-up")
     public String saveUser(@Valid User user, Errors errors, Model model){
         if (errors.hasErrors()) {
-            model.addAttribute(user);
+            model.addAttribute("errors", errors);
+            model.addAttribute("user", user);
             return "users/sign-up";
         }
 
